@@ -9,3 +9,33 @@ paths:
       responses:
         '200':
           description: A successful response
+  /users:
+    post:
+      summary: ユーザーを追加する
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: ユーザーが追加されました
+        '400':
+          description: リクエストが不正です
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+      required:
+        - name
+        - email
